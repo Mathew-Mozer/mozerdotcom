@@ -1,0 +1,33 @@
+pool:
+  name: Hosted VS2017
+  demands: npm
+
+steps:
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: source'
+  inputs:
+    PathtoPublish: public
+    ArtifactName: source
+
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    workingDir: '$(System.DefaultWorkingDirectory)'
+    verbose: false
+
+- task: Npm@1
+  displayName: 'npm run build'
+  inputs:
+    command: custom
+    workingDir: '$(System.DefaultWorkingDirectory)'
+    verbose: false
+    customCommand: 'run build'
+
+- task: AzureWebApp@1
+  displayName: 'Azure Web App Deploy: WOEPlus'
+  inputs:
+    azureSubscription: 'Free Trial (5c391c47-4b41-4276-a914-d7eff64a20cd)'
+    appType: webApp
+    appName: WOEPlus
+    package: '$(System.DefaultWorkingDirectory)/build'
+
