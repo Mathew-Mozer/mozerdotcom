@@ -13,7 +13,7 @@ function Header () {
         <div>
                     
         <Jumbotron style={{marginBottom:0}}>
-            <h1 className="display-3">My name is Mathew</h1>
+            <h1 className="display-3">Mathew Mozer</h1>
             <p className="lead">Full-Stack Developer</p>
             <p className="lead">
                 <Button color="primary">Contact</Button>

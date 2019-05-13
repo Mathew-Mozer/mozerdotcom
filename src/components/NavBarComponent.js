@@ -1,15 +1,24 @@
 import React, { Component } from 'react'
-import { Navbar,Nav, Collapse, NavItem, NavbarToggler } from 'reactstrap'
+import { Navbar,Nav, Collapse, NavItem, NavbarToggler,NavbarBrand,Badge } from 'reactstrap'
 import { NavLink } from 'react-router-dom';
 
 class MMNavBar extends Component {
     state = {
         isNavOpen:false
     }
+    toggleNav() {
+        console.log("clicked")
+        this.setState((prevState, props) => ({
+            isNavOpen: !this.state.isNavOpen
+          }));
+    }
     render(){
         return(
         <Navbar bg="light" expand="lg">
-            <NavbarToggler aria-controls="basic-navbar-nav" />
+         <NavbarBrand className='mr-auto' href="/">
+                <Badge href="/" color="primary">MM</Badge>
+            </NavbarBrand>
+            <NavbarToggler onClick={this.toggleNav} />
             <Collapse isOpen={this.state.isNavOpen} navbar>
             <Nav navbar>
                     <NavItem>
