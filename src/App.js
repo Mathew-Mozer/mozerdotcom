@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import { Button } from 'reactstrap';
+import { BrowserRouter } from 'react-router-dom';
+import Main from './components/MainComponent'
 
 function App() {
   return (
-    <div className="App">
-      <Button color="danger">Danger!</Button>
-    </div>
+    <BrowserRouter>
+      <Main />
+    </BrowserRouter>
   );
 }
 
