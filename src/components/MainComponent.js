@@ -3,10 +3,10 @@ import { Jumbotron, Button } from 'reactstrap'
 import { Router, Route, Switch,Redirect } from "react-router";
 import MMNavBar from './NavBarComponent'
 import Home from './HomeComponent'
-import PastProjects from './PastProjectsComponent'
 import CurrentProjects from './CurrentProjectsComponent'
 import Hobbies from './HobbiesComponent'
 import Skills from './SkillsComponent'
+import Snippets from './SnippetsComponent';
 
 function Header () {
     return(
@@ -30,11 +30,12 @@ class Main extends Component {
         return (
             <div>
               <Header />
+            
             <Switch location={this.props.location}>
               <Route path='/home' component={Home} />
               <Route path='/skills' component={Skills} />
-              <Route path='/past' component={PastProjects} />
-              <Route path='/current' component={CurrentProjects} />
+              <Route path='/projects/:id' component={CurrentProjects} />
+              <Route path='/snippets/:language' component={Snippets} />
               <Route path='/hobbies' component={Hobbies} />
               <Redirect to="/home" />
             </Switch>
