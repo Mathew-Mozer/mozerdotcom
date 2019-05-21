@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Navbar, Nav, Collapse, NavItem, NavbarToggler, NavbarBrand, Badge,UncontrolledDropdown,DropdownMenu,DropdownItem,DropdownToggle } from 'reactstrap'
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Projects, snippets } from '../data'
 
@@ -25,7 +26,7 @@ class MMNavBar extends Component {
         return (
             <Navbar bg="light" expand="lg">
                 <NavbarBrand className='mr-auto' href="/">
-                    <Badge href="/" color="primary">MM</Badge>
+                    <Badge color="primary">MM</Badge>
                 </NavbarBrand>
                 <NavbarToggler onClick={this.toggleNav} />
                 <Collapse isOpen={this.state.isNavOpen} navbar>
@@ -45,9 +46,9 @@ class MMNavBar extends Component {
                             <DropdownToggle nav caret>
                                 Current Projects
                             </DropdownToggle>
-                                <DropdownMenu left>
-                                {Projects.filter(item=>item.current).map(item=>
-                                    <DropdownItem>
+                                <DropdownMenu left={'true'}>
+                                {this.props.Projects.Projects.filter(item=>item.current).map((item,key)=>
+                                    <DropdownItem key={key}>
                                     <NavLink className="nav-link" to={`/projects/${item.id}`}>
                                 <span className="fa fa-info fa-lg"></span>{item.name}
                             </NavLink>
@@ -64,8 +65,8 @@ class MMNavBar extends Component {
                                 Past Projects
                             </DropdownToggle>
                                 <DropdownMenu left>
-                                {Projects.filter(item=>!item.current).map(item=>
-                                    <DropdownItem>
+                                {this.props.Projects.Projects.filter(item=>!item.current).map((item,key)=>
+                                    <DropdownItem key={key}>
                                     <NavLink className="nav-link" to={`/projects/${item.id}`}>
                                 <span className="fa fa-info fa-lg"></span>{item.name}
                             </NavLink>
@@ -87,10 +88,10 @@ class MMNavBar extends Component {
                                 Guides
                             </DropdownToggle>
                                 <DropdownMenu left>
-                                {Projects.filter(item=>item.current).map(item=>
-                                    <DropdownItem>
+                                {this.props.Projects.Projects.filter(item=>item.current).map((item,key)=>
+                                    <DropdownItem key={key}>
                                     <NavLink className="nav-link" to={`/projects/${item.id}`}>
-                                <span className="fa fa-info fa-lg"></span>{item.name}
+                                <span className="fa fa-info fa-lg"></span>d{item.name}
                             </NavLink>
                                     </DropdownItem>
                                     )}
@@ -105,10 +106,10 @@ class MMNavBar extends Component {
                                 Snippets
                             </DropdownToggle>
                                 <DropdownMenu left>
-                                {this.getLanguages().map(snip=>
-                                    <DropdownItem>
-                                    <NavLink className="nav-link" to={`/snippets/${snip}`}>
-                                <span className="fa fa-info fa-lg"></span>{snip}
+                                {this.getLanguages().map((item,key)=>
+                                    <DropdownItem key={key}>
+                                    <NavLink className="nav-link" to={`/snippets/${item}`}>
+                                <span className="fa fa-info fa-lg"></span>{item}
                             </NavLink>
                                     </DropdownItem>
                                     )}
@@ -124,6 +125,16 @@ class MMNavBar extends Component {
     }
 }
 
-export default MMNavBar
+const mapDispatchToProps = (dispatch) => ({
+    
+  })
+
+const mapStateToProps = state => {
+    return {
+        Projects: state.Projects,
+        Skills: state.Skills,
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(MMNavBar)
 
 
