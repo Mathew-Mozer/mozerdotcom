@@ -11,13 +11,11 @@ class CurrentProjects extends Component {
         }
         return (<>
             <Row>
-                <Col md={1}>Technology:</Col>
-            </Row>
-            <Row>
-                <Col>{this.props.project.tech.map((tech) =>{
+                <Col md={1}>Technology:&nbsp;
+                {this.props.project.tech.map((tech) =>{
                     console.log("curproj",this.props.skills.Skills)
                     var curTech = this.props.skills.Skills.filter(item=>item.id===tech)[0]
-                    return(<SingleSkill skill={curTech} small />)
+                    return(<span style={{paddingRight:10,paddingLeft:10}}>{curTech.name}</span>)
                     })}
                 </Col>
             </Row>
@@ -61,7 +59,7 @@ class CurrentProjects extends Component {
             {this.props.project.description&&this.renderDescription()}
             {this.props.project.tech&&this.props.project.tech.length > 0 && this.renderTechnologyUsed()}
             {this.props.project.relatedProjects && this.props.project.relatedProjects.length > 0 && this.renderRelatedProjects()}
-            {this.props.project.videos && this.props.project.videos.length > 0 && this.renderVideos()}
+            {this.props.project.videos && !this.props.noVideos && this.props.project.videos.length > 0 && this.renderVideos()}
         </Container>)
         }
     }

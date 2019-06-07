@@ -23,7 +23,7 @@ class SkillsComponent extends Component {
     }
     renderCategories = () =>{
         var cats = []
-        let categories = this.props.Skills.Skills.map(({categories})=>{
+        this.props.Skills.Skills.map(({categories})=>{
             categories.forEach(cat=>{
                 if(!cats.includes(cat)){
                     cats.push(cat)
@@ -80,7 +80,7 @@ class SkillsComponent extends Component {
                 return(true)
             return false
         }).filter(Skill=>Skill.name.toLowerCase().includes(this.state.filterText.toLowerCase())
-        ).map((Skill=><SingleSkill skill={Skill} />   ))}
+        ).map(Skill=><SingleSkill skill={Skill} />   )}
            
             </Container>)
     }

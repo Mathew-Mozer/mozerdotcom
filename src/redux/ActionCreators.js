@@ -32,12 +32,29 @@ export const getSkills = () => (dispatch) => {
         });
         dispatch({type:ActionTypes.SKILLS_LOADED})
     });
-
 }
-
+export const getExperience = () => (dispatch) => {
+    firebase.firestore().collection("experience").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            var payload = {
+                id:doc.id,
+                ...doc.data()
+            }
+            dispatch(addExperience(payload))
+        });
+        dispatch({type:ActionTypes.EXPERIENCE_LOADED})
+    });
+}
 
 export const addSkill = (payload) => ({
     type: ActionTypes.ADD_SKILL,
+    payload: payload
+});
+
+export const addExperience = (payload) => ({
+    type: ActionTypes.ADD_EXPERIENCE,
     payload: payload
 });
 

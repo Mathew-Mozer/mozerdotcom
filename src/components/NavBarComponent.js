@@ -24,7 +24,7 @@ class MMNavBar extends Component {
     }
     render() {
         return (
-            <Navbar bg="light" expand="lg">
+            <Navbar color="dark" expand="lg">
                 <NavbarBrand className='mr-auto' href="/">
                     <Badge color="primary">MM</Badge>
                 </NavbarBrand>
@@ -77,12 +77,12 @@ class MMNavBar extends Component {
                                     </DropdownMenu>
                             </UncontrolledDropdown>
                         </NavItem>
-                        <NavItem>
+            {false &&   <NavItem>
                             <NavLink className="nav-link" to="/hobbies">
                                 <span className="fa fa-info fa-lg"></span>Hobbies
                         </NavLink>
-                        </NavItem>
-                        <NavItem>
+                        </NavItem>}
+                        {false &&   <NavItem>
                             <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
                                 Guides
@@ -99,8 +99,8 @@ class MMNavBar extends Component {
                                    
                                     </DropdownMenu>
                             </UncontrolledDropdown>
-                        </NavItem>
-                        <NavItem>
+                        </NavItem>}
+                        {false &&   <NavItem>
                             <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
                                 Snippets
@@ -117,7 +117,7 @@ class MMNavBar extends Component {
                                    
                                     </DropdownMenu>
                             </UncontrolledDropdown>
-                        </NavItem>
+                        </NavItem>}
                     </Nav>
                 </Collapse>
             </Navbar>
